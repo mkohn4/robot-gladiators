@@ -7,16 +7,22 @@ var playerMoney = 10;
 
 
 //set enemy variables
-var enemyName = "Roborto";
+var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack = 12;
 
 //log multiple values at once
-console.log(playerName, playerAttack, playerHealth);
-console.log(enemyName, enemyAttack, enemyHealth);
+/*console.log(playerName, playerAttack, playerHealth);
+console.log(enemyNames, enemyAttack, enemyHealth);
+
+for(var i=0; i < enemyNames.length; i++) {
+    console.log(enemyNames[i]);
+    console.log(i);
+    console.log(enemyNames[i] + " is at " + i + " index")
+}*/
 
 //create function EXPRESSION
-var fight = function() {
+var fight = function(enemyName) {
     //alert players they are starting the round
     window.alert("Welcome to Robot Gladiators!");
 
@@ -72,7 +78,9 @@ var fight = function() {
 
 
 //run fight
-fight();
+for (var i=0; i < enemyNames.length; i++) {
+    fight(enemyNames[i]);
+}
 
 
 
