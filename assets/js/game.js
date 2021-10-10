@@ -47,7 +47,6 @@ var fight = function(enemyName) {
         }
 
         //if player does NOT choose skip, default to fight
-
             //subtract the value of 'playerAttack' from the value of 'enemyHealth' and use that value to update the value in the 'enemyHealth' variable
             enemyHealth = enemyHealth - playerAttack;
             //log a message to the console with the result to show it working
@@ -58,7 +57,6 @@ var fight = function(enemyName) {
                 window.alert(enemyName + " has died!");
                 //award payer money for winning
                 playerMoney = playerMoney + 20;
-
                 //leave while() loop since enemy is dead
                 break;
             }
@@ -102,10 +100,8 @@ var startGame = function() {
             var pickedEnemyName = enemyNames[i];
             //set new enemy health to 50
             enemyHealth=50;
-            //use debugger to pause script 
-            //debugger;
-
-            
+                //use debugger to pause script 
+                //debugger;
             //pass pickedEnemyNames variable value into fight function
             fight(pickedEnemyName);
             //if we're not at the last enemy in the array and player is alive
@@ -119,7 +115,11 @@ var startGame = function() {
                 }
             }
         } 
-        
+        //if player is not alive, break out of the loop and let endGame Function run
+        else {
+            window.alert("you have lost your robot in battle.  Game Over!");
+            break;
+        } 
     }
     //after loop ends, player is out of health or enemies to fight, call endGame function
     endGame();
@@ -127,6 +127,7 @@ var startGame = function() {
 
 //function to end the entire game
 var endGame = function () {
+    window.alert("The game has now ended. Let's see how you did!");
     //if player health is greater than zero congratulat player
     if (playerHealth > 0) {
         //notify user of money and health of their robot
@@ -144,7 +145,6 @@ var endGame = function () {
     } else {
         window.alert("Thank you for playing Robot Gladiators! Come back soon!");
     }
-
 };
 
 //introduce shop function
