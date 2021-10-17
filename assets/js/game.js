@@ -43,16 +43,24 @@ var fightOrSkip = function() {
 
 //create function EXPRESSION
 var fight = function(enemy) {
-    //alert players they are starting the round
-    /*window.alert("Welcome to Robot Gladiators!");*/
 
+    //keep track of who goes first
+    var isPlayerTurn = true;
+    //change value of isPlayerTurn if random number > 0.5
+    if (Math.random() > 0.5) {
+        isPlayerTurn = false;
+    }
     //repeat and execute as long as the enemy-robot and player are alive
     while(enemy.health > 0 && playerInfo.health > 0) {
         //call fight or skip function to recursively ask user what they want to do if null value selected
-    if(fightOrSkip()) {
-        //if true, leave fight by breaking loop
-        break;
-    }
+        if(isPlayerTurn) {
+            //ask player if they want to fight or skip using fightOrSkip function
+            if(fightOrSkip()) {
+                //if true, leave fight by breaking loop
+                break;
+                }
+        
+        
 
         //if player does NOT choose skip, default to fight
         //assign random value between playerAttack value-3 and playerAttack
@@ -73,15 +81,13 @@ var fight = function(enemy) {
             else {
                     window.alert(enemy.name + " still has " + enemy.health + " health left!");
             }
-            
+        } else {
             //calculate random number between enemyAttack-3 and enemyAttack
             var damage = randomNumber(enemy.attack - 3, enemy.attack);
             //subtract the value of 'enemyAttack' from the value of 'playerHealth' and use that result to update the value in the 'playerHealth' variable - non-negative
             playerInfo.health = Math.max(0,playerInfo.health - damage);
             //log a resulting message to the console to know it works
             console.log(enemy.name + " attacked " + playerInfo.name + ". " + playerInfo.name + " now has " + playerInfo.health + " health remaining.");
-    
-            
             //check player health
             if (playerInfo.health <= 0) {
                 //alert player has died
@@ -92,6 +98,9 @@ var fight = function(enemy) {
             else {
                 window.alert(playerInfo.name + " still has " + playerInfo.health + " health left!");
             }
+        }
+         //switch turn order for next round
+         isPlayerTurn = !isPlayerTurn;      
         }
 };
 
