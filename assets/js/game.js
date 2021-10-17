@@ -49,7 +49,10 @@ var fight = function(enemy) {
     //repeat and execute as long as the enemy-robot and player are alive
     while(enemy.health > 0 && playerInfo.health > 0) {
         //call fight or skip function to recursively ask user what they want to do if null value selected
-    fightOrSkip();
+    if(fightOrSkip()) {
+        //if true, leave fight by breaking loop
+        break;
+    }
 
         //if player does NOT choose skip, default to fight
         //assign random value between playerAttack value-3 and playerAttack
@@ -157,25 +160,20 @@ var endGame = function () {
 //introduce shop function
 var shop = function() {
     //ask player what they'd like to do
-    var shopOptionPrompt = window.prompt("Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: REFILL, UPGRADE, or LEAVE to choose.");
-
+    var shopOptionPrompt = window.prompt("Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter: 1 for REFILL, 2 for UPGRADE, or 3 to LEAVE.");
+    //change input to an integer
+    shopOptionPrompt = parseInt(shopOptionPrompt);
     //use switch to carry out action
     switch (shopOptionPrompt) {
-        case "REFILL": //new case
-        case "Refill": //new case
-        case "refill": 
+        case 1:
         //check if player can purchase health
             playerInfo.refillHealth(); 
             break;
-        case "UPGRADE": //new case
-        case "Upgrade": //new case
-        case "upgrade":
+        case 2:
             //check if player can purchase attack
             playerInfo.upgradeAttack();
             break;
-        case "LEAVE": //new case
-        case "Leave": //new case
-        case "leave":
+        case 3:
             window.alert("Leaving the Store.");
             //do nothing so function will end
             break;
